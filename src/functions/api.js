@@ -7,7 +7,14 @@ function getArticles() {
     return axios.get(`${baseUrl}/articles`).then(({ data }) => {
         const articles = data.articles;
         return articles;
-    })
-}
+    });
+};
 
-export { getArticles };
+function getArticleById(id) {
+    return axios.get(`${baseUrl}/articles/${id}`).then(({ data }) => {
+        const article = data.article;
+        return article;
+    });
+};
+
+export { getArticles, getArticleById };
