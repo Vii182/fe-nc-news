@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../../functions/api";
+import CommentsSection from "../comments-components/CommentsSection";
 
 const SingleArticle = () => {
     const { article_id } = useParams();
@@ -49,6 +50,7 @@ const SingleArticle = () => {
             <p className="text-gray-800 mb-6">{currArticle.body}</p>
             <p className="text-gray-600 font-semibold">Votes: {currArticle.votes}</p>
             </div>
+            <CommentsSection article_id={article_id}/>
         </section>
     );
 };
