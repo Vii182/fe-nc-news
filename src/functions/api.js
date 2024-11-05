@@ -17,4 +17,12 @@ function getArticleById(id) {
     });
 };
 
-export { getArticles, getArticleById };
+function getCommentsByArticleId(id) {
+    return axios.get(`${baseUrl}/articles/${id}/comments`).then(({ data }) => {
+        const comments = data.comments;
+        return comments;
+    })
+}
+
+
+export { getArticles, getArticleById, getCommentsByArticleId };
