@@ -24,5 +24,10 @@ function getCommentsByArticleId(id) {
     })
 }
 
+async function updateArticleVotes(id, inc_votes) {
+    const response = await axios.patch(`${baseUrl}/articles/${id}`, {inc_votes});
+    return response.data.updatedVotes;
+}
 
-export { getArticles, getArticleById, getCommentsByArticleId };
+
+export { getArticles, getArticleById, getCommentsByArticleId, updateArticleVotes };

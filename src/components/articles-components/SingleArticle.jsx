@@ -1,22 +1,70 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById } from "../../functions/api";
+import { getArticleById, updateArticleVotes } from "../../functions/api";
 import CommentsSection from "../comments-components/CommentsSection";
+
+
+// <<<<<<< SINGLEARTICLE COMPONENT >>>>>>> -------
 
 const SingleArticle = () => {
     const { article_id } = useParams();
     const [ currArticle, setCurrArticle ] = useState({});
     const [ isLoading, setIsLoading ] = useState(true);
+    const [ voteCount, setVoteCount ] = useState(0);
+    const [ userVote, setUserVote ] = useState(null);
+
+
+    // <<<<<<< LOAD CURRENT VOTE STATUS >>>>>>> -------
+
+    useEffect(() => {
+        const voteStatus = JSON.parse(localStorage.getItem("votedArticles") || "{}");
+        setUserVote(voteStatus[article_id] || null);
+    }, [article_id]);
+
+    // <<<<<<< FETCH CURRENT ARTICLE DATA >>>>>>> -------
 
     useEffect(() => {
         getArticleById(article_id).then((fetchedArticle) => {
             setCurrArticle(fetchedArticle);
+            setVoteCount(fetchedArticle.votes);
             setIsLoading(false);
         }).catch((error) => {
             console.error('Error fetching article:', error);
             setIsLoading(false);
         });
     }, [article_id]);
+
+
+    // <<<<<<< HANDLE VOTE CHANGE WITH TOGGLE UV / DV >>>>>>> -------
+
+    const handleVoteChange = (voteChange) => {
+
+        let newVoteValue;
+        if(userVote === voteChange){
+            newVoteValue = 0;
+        } else newVoteValue = voteChange;
+
+        const voteDiference = newVoteValue - (userVote || 0);
+
+        // <<<<<<< UPDATE FRONT-END >>>>>>> -------
+
+        setVoteCount((prevVotes) => prevVotes + voteDiference);
+        setUserVote(newVoteValue);
+
+        // <<<<<<< SAVE CURRENT VOTE STATUS IN LOCAL STORAGE >>>>>>> -------
+
+        const voteStatus = JSON.parse(localStorage.getItem("votedArticles") || "{}");
+            voteStatus[article_id] = newVoteValue;
+            localStorage.setItem("votedArticles", JSON.stringify(voteStatus));
+
+        // <<<<<<< UPDATE BACK-END >>>>>>> -------
+
+        updateArticleVotes(article_id, voteDiference).catch((error) => {
+            console.error("Error Applying Vote:", error);
+            setVoteCount((prevVotes) => prevVotes - voteDiference);
+            setUserVote(userVote);
+        });
+    };
 
 
     if (isLoading) {
@@ -48,7 +96,20 @@ const SingleArticle = () => {
             </div>
 
             <p className="text-gray-800 mb-6">{currArticle.body}</p>
-            <p className="text-gray-600 font-semibold">Votes: {currArticle.votes}</p>
+
+            <div className="flex items-center space-x-4">
+                <button onClick={() => handleVoteChange(1)}
+                className={`p-2 bg-green-500 text-white rounded ${userVote === 1 ? 'opacity-70' : ''}`}>
+                    {userVote === 1 ? 'Upvoted' : 'Upvote'}
+                </button>
+                <button onClick={() => handleVoteChange(-1)}
+                className={`p-2 bg-red-500 text-white rounded ${userVote === -1 ? 'opacity-70' : ''}`}>
+                    {userVote === -1 ? 'Downvoted' : 'Downvote'}
+                </button>
+                <p className="text-gray-600 font-semibold">Votes: {voteCount}</p>
+            </div>
+
+            
             </div>
             <CommentsSection article_id={article_id}/>
         </section>
