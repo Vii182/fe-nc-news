@@ -4,6 +4,7 @@ import './index.css'
 import Home from './sections/Home'
 import Articles from './sections/Articles'
 import Users from './sections/Users'
+import SingleArticle from './components/articles-components/SingleArticle'
 
 function App() {
   
@@ -13,10 +14,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/articles' element={<Articles />} />
+        <Route path='/articles/:article_id' element={<SingleArticle />} />
         <Route path='/users' element={<Users />} />
       </Routes>
     </div>
   )
 }
 
-export default App
+export default App;

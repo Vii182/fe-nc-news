@@ -5,8 +5,7 @@ import ArticlesList from "../components/articles-components/ArticlesList";
 
 const Articles = () => {
     return (
-        <section>
-            <h1>Welcome to ArticlesPage</h1>
+        <section className="mt-2">
             <div>
                 <ArticlesList />
             </div>
