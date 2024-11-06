@@ -21,6 +21,12 @@ const NavBar = () => {
       >
         Users
       </Link>
+      <Link
+        to="/login"
+        className="transition-transform transform hover:scale-110 hover:text-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-600"
+      >
+        Login
+      </Link>
     </nav>
   );
 };
