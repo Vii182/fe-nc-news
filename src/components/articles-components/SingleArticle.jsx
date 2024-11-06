@@ -5,6 +5,7 @@ import ArticleHeader from "./ArticleHeader";
 import ArticleBody from "./ArticleBody";
 import VoteButtons from "./VoteButtons";
 import CommentsSection from "../comments-components/CommentsSection";
+import SideBar from "../SideBar";
 
 // <<<<< MAIN COMPONENT >>>>> -----
 const SingleArticle = () => {
@@ -33,11 +34,16 @@ const SingleArticle = () => {
 
   // <<<<< MAIN RETURN >>>>> -----
   return (
-    <section className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 bg-white rounded-lg shadow-md mt-10">
+    <section className="flex flex-col sm:flex-row min-h-screen bg-gray-800">
+      <aside className="hidden sm:block w-24 sm:w-32 lg:w-40 bg-gray-800">
+        <SideBar />
+      </aside>
+      <main className="flex-grow p-4 sm:p-6 lg:p-8 bg-white shadow-md mt-0 sm:ml-0 sm:mt-0 flex-1">
       <ArticleHeader article={currArticle} />
       <ArticleBody body={currArticle.body} />
       <VoteButtons articleId={article_id} />
       <CommentsSection article_id={article_id} />
+      </main>
     </section>
   );
 };

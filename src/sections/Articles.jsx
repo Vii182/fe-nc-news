@@ -1,10 +1,18 @@
 import ArticlesList from "../components/articles-components/ArticlesList";
+import Footer from "../components/Footer";
+import SideBar from "../components/SideBar";
+import MobileMenu from "../components/MobileMenu";
 
 const Articles = () => {
   return (
-    <section className="mt-2">
-      <div>
-        <ArticlesList />
+    <section className="flex flex-col min-h-screen bg-gray-800">
+      <div className="flex-grow flex">
+        <div className="hidden sm:block bg-gray-800 w-24 sm:w-32 lg:w-40 p-2">
+      <SideBar />
+        </div>
+      <main className="flex-1  bg-gray-50">
+        <ArticlesList />      
+      </main>
       </div>
     </section>
   );
