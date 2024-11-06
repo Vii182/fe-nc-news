@@ -8,17 +8,20 @@ import Footer from "./components/Footer";
 import LoginPage from "./sections/LoginPage";
 import { UserProvider } from "./context/UserContext";
 import TopicPage from "./components/articles-components/TopicPage";
+import MobileMenu from "./components/MobileMenu";
 
 function App() {
   return (
     <UserProvider>
-      <div>
+      <div className="flex flex-col min-h-screen bg-gray-800">
         <Header />
+        <MobileMenu />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/articles" element={<Articles />} />
-          <Route path="/articles/:topicName" element={<TopicPage />} />
+          
           <Route path="/articles/:article_id" element={<SingleArticle />} />
+          <Route path="/articles/topics/:topicName" element={<TopicPage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
         <Footer />
