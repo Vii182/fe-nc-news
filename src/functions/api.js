@@ -52,6 +52,12 @@ async function postComment(article_id, commentData) {
   return response.data.comment;
 }
 
+async function deleteComment(comment_id) {
+  const response = await axios.delete(`${baseUrl}/comments/${comment_id}`  
+  );
+  return response;
+}
+
 export {
   getArticles,
   getArticleById,
@@ -60,4 +66,5 @@ export {
   getUsers,
   getUserByUsername,
   postComment,
+  deleteComment,
 };
