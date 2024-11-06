@@ -44,6 +44,14 @@ function getUserByUsername(username) {
   });
 }
 
+async function postComment(article_id, commentData) {
+  const response = await axios.post(
+    `${baseUrl}/articles/${article_id}/comments`,
+    commentData
+  );
+  return response.data.comment;
+}
+
 export {
   getArticles,
   getArticleById,
@@ -51,4 +59,5 @@ export {
   updateArticleVotes,
   getUsers,
   getUserByUsername,
+  postComment,
 };
