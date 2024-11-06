@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { updateArticleVotes } from "../../functions/api";
 
-const VoteButtons = ({ articleId, initialVotes }) => {
-  const [voteCount, setVoteCount] = useState(initialVotes);
+const VoteButtons = ({ articleId }) => {
+  const [voteCount, setVoteCount] = useState(0);
   const [userVote, setUserVote] = useState(null);
 
   // <<<<< RETRIEVE VOTE STATUS >>>>> -----

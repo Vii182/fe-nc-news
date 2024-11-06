@@ -33,7 +33,7 @@ const SingleArticle = () => {
     <section className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 bg-white rounded-lg shadow-md mt-10">
       <ArticleHeader article={currArticle} />
       <ArticleBody body={currArticle.body} />
-      <VoteButtons articleId={article_id} initialVotes={currArticle.votes} />
+      <VoteButtons articleId={article_id} />
       <CommentsSection article_id={article_id} />
     </section>
   );
