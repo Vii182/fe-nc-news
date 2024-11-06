@@ -16,6 +16,7 @@ function App() {
       <div className="flex flex-col min-h-screen bg-gray-800">
         <Header />
         <MobileMenu />
+        <div className="h-2 bg-orange-400 shadow-lg"></div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/articles" element={<Articles />} />
@@ -24,6 +25,7 @@ function App() {
           <Route path="/articles/topics/:topicName" element={<TopicPage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
+        <div className="h-2 bg-orange-400 shadow-lg"></div>
         <Footer />
       </div>
     </UserProvider>

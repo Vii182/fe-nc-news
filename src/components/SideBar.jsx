@@ -19,7 +19,7 @@ const SideBar = () => {
         ))}
       </ul>
       <div className="mt-8">
-        <h2 className="text-orange-500text-m sm:text-lg lg:text-xl font-bold mb-4">Navigation</h2>
+        <h2 className="text-orange-500 text-m sm:text-lg lg:text-xl font-bold mb-4">Navigation</h2>
         <ul className="space-y-2 text-sm sm:text-lg lg:text-xl">
           <li>
             <Link to="/" className="block py-2 px-4 rounded hover:bg-gray-600">
