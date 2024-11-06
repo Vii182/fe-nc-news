@@ -24,6 +24,10 @@ const CommentsSection = ({ article_id }) => {
     setComments((prevComments) => [newComment, ...prevComments]);
   };
 
+  const handleCommentDeletion = (idOfDeletedComment) => {
+    setComments((prevComments) => prevComments.filter((comment) => comment.comment_id !== idOfDeletedComment));
+  };
+
   if (isLoading) return <p>Loading comments...</p>;
   if (isError) return <p>{isError}</p>;
 
@@ -36,7 +40,7 @@ const CommentsSection = ({ article_id }) => {
       />
       <div className="space-y-4">
         {comments.map((comment) => (
-          <CommentCard key={comment.comment_id} comment={comment} />
+          <CommentCard key={comment.comment_id} comment={comment} onDelete={handleCommentDeletion} />
         ))}
       </div>
     </section>
