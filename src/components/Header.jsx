@@ -12,7 +12,7 @@ const Header = () => {
         </h1>
       </div>
 
-      <div className="mr-10">
+      <div className="mr-10 ml-10">
         <NavBar />
       </div>
     </header>

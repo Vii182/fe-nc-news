@@ -1,6 +1,6 @@
 const ArticleCard = ({ article }) => {
   return (
-    <div className="max-w-lg mx-auto bg-gray-50 rounded-lg shadow-md overflow-hidden mb-4">
+    <div className="min-h-[420px] max-w-lg mx-auto bg-gray-50 rounded-lg shadow-md overflow-hidden mb-4">
       <img src={article.article_img_url} loading="eager" />
       <div className="p-4">
         <h2 className="text-xl font-bold text-gray-800">{article.title}</h2>

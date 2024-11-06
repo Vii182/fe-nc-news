@@ -7,6 +7,7 @@ import SingleArticle from "./components/articles-components/SingleArticle";
 import Footer from "./components/Footer";
 import LoginPage from "./sections/LoginPage";
 import { UserProvider } from "./context/UserContext";
+import TopicPage from "./components/articles-components/TopicPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/articles" element={<Articles />} />
+          <Route path="/articles/:topicName" element={<TopicPage />} />
           <Route path="/articles/:article_id" element={<SingleArticle />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
