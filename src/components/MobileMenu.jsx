@@ -1,13 +1,22 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 import { MenuIcon, XIcon } from "@heroicons/react/solid";
 
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useContext(UserContext);
+  const navigate = useNavigate();
+
   const topics = ["coding", "football", "coding"];
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleQuickLogout = () => {
+    logout();
+    navigate("/");
   };
 
   return (
@@ -60,6 +69,29 @@ const MobileMenu = () => {
                 </Link>
               </li>
             </ul>
+          </div>
+          <div className="mt-4">
+            {user ? (
+              <>
+                <span className="block text-orange-400 mb-2">
+                  Hello, {user.username}
+                </span>
+                <button
+                  onClick={handleQuickLogout}
+                  className="w-full py-2 px-4 bg-red-500 text-white rounded hover:bg-red-600"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/login"
+                className="block py-2 px-4 bg-orange-500 text-white rounded hover:bg-orange-600"
+                onClick={() => setIsOpen(false)}
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       )}
