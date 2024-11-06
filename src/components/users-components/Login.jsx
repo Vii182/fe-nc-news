@@ -24,7 +24,7 @@ const LoginForm = () => {
     <div className="login-component">
       {user ? (
         <>
-          <span className="text-orange-600 text-lg font-semibold">
+          <span className="text-orange-600 text-lg font-semibold flex justify-center text-center">
             Welcome, {user.username}
           </span>
           <button
