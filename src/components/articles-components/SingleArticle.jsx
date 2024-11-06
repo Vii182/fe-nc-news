@@ -11,6 +11,7 @@ const SingleArticle = () => {
   const { article_id } = useParams();
   const [currArticle, setCurrArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(null);
 
   // <<<<< FETCH ARTICLE DATA >>>>> -----
   useEffect(() => {
@@ -21,12 +22,14 @@ const SingleArticle = () => {
       })
       .catch((error) => {
         console.error("Error fetching article:", error);
+        setIsError("Error retreiving Article! Please try again.")
         setIsLoading(false);
       });
   }, [article_id]);
 
   if (isLoading) return <p>Loading article...</p>;
   if (!currArticle) return <p>Article not found.</p>;
+  if(isError) return <p>{isError}</p>;
 
   // <<<<< MAIN RETURN >>>>> -----
   return (
