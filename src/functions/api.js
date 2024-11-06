@@ -30,9 +30,34 @@ async function updateArticleVotes(id, inc_votes) {
   return response.data.updatedVotes;
 }
 
+function getUsers() {
+  return axios.get(`${baseUrl}/users`).then(({ data }) => {
+    const users = data.users;
+    return users;
+  });
+}
+
+function getUserByUsername(username) {
+  return axios.get(`${baseUrl}/users/${username}`).then(({ data }) => {
+    const user = data.user;
+    return user;
+  });
+}
+
+async function postComment(article_id, commentData) {
+  const response = await axios.post(
+    `${baseUrl}/articles/${article_id}/comments`,
+    commentData
+  );
+  return response.data.comment;
+}
+
 export {
   getArticles,
   getArticleById,
   getCommentsByArticleId,
   updateArticleVotes,
+  getUsers,
+  getUserByUsername,
+  postComment,
 };
