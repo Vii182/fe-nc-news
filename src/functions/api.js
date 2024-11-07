@@ -77,6 +77,18 @@ async function deleteComment(comment_id) {
   return response;
 }
 
+// <<<<< GET LATEST ARTICLES HOME COMPONENT >>>>> -----
+function getLatestArticles() {
+  return axios.get(`${baseUrl}/articles`).then(({data}) => {
+    const articles = data.articles;
+    return articles;
+  })
+  .catch((error) => {
+    console.error("Error fetching latest articles", error);
+    throw error;
+  });
+}
+
 export {
   getArticles,
   getArticleById,
@@ -86,4 +98,5 @@ export {
   getUserByUsername,
   postComment,
   deleteComment,
+  getLatestArticles,
 };

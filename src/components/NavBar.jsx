@@ -12,7 +12,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="flex items-center space-x-4">
+    <nav className="text-white flex items-center space-x-4">
       <Link
         to="/"
         className="text-sm sm:text-base transition-transform transform hover:scale-110 hover:text-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-600"
