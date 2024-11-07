@@ -9,6 +9,7 @@ import LoginPage from "./sections/LoginPage";
 import { UserProvider } from "./context/UserContext";
 import TopicPage from "./components/articles-components/TopicPage";
 import MobileMenu from "./components/MobileMenu";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   return (
@@ -20,10 +21,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/articles" element={<Articles />} />
-          
           <Route path="/articles/:article_id" element={<SingleArticle />} />
           <Route path="/articles/topics/:topicName" element={<TopicPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<ErrorPage errorCode={404} />} />
         </Routes>
         <div className="h-2 bg-orange-400 shadow-lg"></div>
         <Footer />
