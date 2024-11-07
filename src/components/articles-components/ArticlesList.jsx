@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { getArticles } from "../../functions/api";
 import ArticleCard from "./ArticleCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ErrorPage from "../ErrorPage";
 
 // <<<<< MAIN COMPONENT >>>>> -----
 const ArticlesList = ({
@@ -11,12 +12,13 @@ const ArticlesList = ({
 }) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsloading] = useState(true);
-  const [isError, setIsError] = useState(null);
+  const [errorCode, setErrorCode] = useState(null);
+  const navigate = useNavigate();
 
   // <<<<< FETCH DATA >>>>> -----
   useEffect(() => {
     setIsloading(true);
-    setIsError(null);
+    setErrorCode(null);
     getArticles(topic, sortBy, order)
       .then((articlesData) => {
         setArticles(articlesData);
@@ -24,17 +26,27 @@ const ArticlesList = ({
       })
       .catch((error) => {
         console.error("Error fetching articles:", error);
-        setIsError("Error Fetching Articles, Please try again.");
+        if (error.response && error.response.status === 404) {
+          setErrorCode(404);
+        } else if (error.response && error.response.status === 400) {
+          setErrorCode(400);
+        } else setErrorCode(500);
         setIsloading(false);
       });
   }, [topic, sortBy, order]);
 
   // <<<<< CONDITIONAL RETURNS >>>>> -----
-  if (isLoading) {
-    return <p className="px-4 flex justify-start mt-10">Loading articles...</p>;
+
+  if (errorCode) {
+    return <ErrorPage errorCode={errorCode} />;
   }
-  if (isError) {
-    return <p className="px-4 flex justify-start mt-10">{isError}</p>;
+
+  if (isLoading) {
+    return (
+      <p className="text-4xl font-semibold px-4 flex justify-start mt-10">
+        Loading articles...
+      </p>
+    );
   }
 
   // <<<<< MAIN RETURN >>>>> -----

@@ -1,9 +1,10 @@
 import { useState, useEffect, memo } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import SideBar from "../SideBar";
 import { getArticles } from "../../functions/api";
 import ArticleCard from "./ArticleCard";
 import SortingDropdown from "./SortingDropdown";
+import ErrorPage from "../ErrorPage";
 
 // <<<<< STOP SIDEBAR RERENDER >>>>> -----
 const MemoizedSideBar = memo(SideBar);
@@ -11,11 +12,12 @@ const MemoizedSideBar = memo(SideBar);
 // <<<<< MAIN COMPONENT >>>>> -----
 const TopicPage = () => {
   const { topicName } = useParams();
+  const navigate = useNavigate();
   const [articles, setArticles] = useState([]);
   const [sortBy, setSortBy] = useState("created_at");
   const [order, setOrder] = useState("desc");
   const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(null);
+  const [errorCode, setErrorCode] = useState(null);
 
   // <<<<< HANDLE SORT >>>>> -----
   const handleSortChange = (newSortBy, newOrder) => {
@@ -26,7 +28,7 @@ const TopicPage = () => {
   // <<<<< FETCH DATA RELATED TO TOPIC >>>>> -----
   useEffect(() => {
     setIsLoading(true);
-    setIsError(null);
+    setErrorCode(null);
 
     getArticles(topicName, sortBy, order)
       .then((fetchedArticles) => {
@@ -35,10 +37,17 @@ const TopicPage = () => {
       })
       .catch((error) => {
         console.error("Error fetching topic Articles", error);
-        setIsError("Failed to load Articles. Please try again.");
-        setIsLoading(false);
+        if (error.response && error.response.status === 404) {
+          setErrorCode(404);
+        } else if (error.response && error.response.status === 400) {
+          setErrorCode(400);
+        } else setErrorCode(500);
       });
   }, [topicName, sortBy, order]);
+
+  if (errorCode) {
+    return <ErrorPage errorCode={errorCode} />;
+  }
 
   // <<<<< MAIN RETURN >>>>> -----
   return (
@@ -49,9 +58,7 @@ const TopicPage = () => {
         </div>
         <main className="flex-1  bg-gray-50">
           {isLoading ? (
-            <p className="px-4 flex justify-start mt-10">{`Loading articles relating to ${topicName}...`}</p>
-          ) : isError ? (
-            <p className="px-4 flex justify-start mt-10">{isError}</p>
+            <p className="text-4xl font-semibold px-4 flex justify-start mt-10">{`Loading articles relating to ${topicName}...`}</p>
           ) : (
             <>
               <h2 className="text-4xl font-playfair font-bold text-gray-800 gap-4 p-4">
