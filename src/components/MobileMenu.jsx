@@ -3,22 +3,27 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { MenuIcon, XIcon } from "@heroicons/react/solid";
 
+// <<<<< MAIN COMPONENT >>>>> -----
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const topics = ["coding", "football", "coding"];
+  // <<<<< TOPICS LIST >>>>> -----
+  const topics = ["coding", "football", "cooking"];
 
+  // <<<<< TOGGLE OPEN >>>>> -----
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  // <<<<< QUICKLOGOUT >>>>> -----
   const handleQuickLogout = () => {
     logout();
     navigate("/");
   };
 
+  // <<<<< MAIN RETURN >>>>> -----
   return (
     <div className="sm:hidden p-1 relative z-10">
       <button onClick={toggleMenu} className="text-white">

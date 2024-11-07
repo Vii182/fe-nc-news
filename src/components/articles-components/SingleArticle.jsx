@@ -23,14 +23,10 @@ const SingleArticle = () => {
       })
       .catch((error) => {
         console.error("Error fetching article:", error);
-        setIsError("Error retreiving Article! Please try again.")
+        setIsError("Error retreiving Article! Please try again.");
         setIsLoading(false);
       });
   }, [article_id]);
-
-  if (isLoading) return <p>Loading article...</p>;
-  if (!currArticle) return <p>Article not found.</p>;
-  if(isError) return <p>{isError}</p>;
 
   // <<<<< MAIN RETURN >>>>> -----
   return (
@@ -39,10 +35,24 @@ const SingleArticle = () => {
         <SideBar />
       </aside>
       <main className="flex-grow p-4 sm:p-6 lg:p-8 bg-white shadow-md mt-0 sm:ml-0 sm:mt-0 flex-1">
-      <ArticleHeader article={currArticle} />
-      <ArticleBody body={currArticle.body} />
-      <VoteButtons articleId={article_id} />
-      <CommentsSection article_id={article_id} />
+        {isLoading ? (
+          <p className="px-4 flex justify-start mt-10">
+            {"Loading article..."}
+          </p>
+        ) : isError ? (
+          <p className="px-4 flex justify-start mt-10">{isError}</p>
+        ) : !currArticle ? (
+          <p className="px-4 flex justify-start mt-10">
+            {"Article not found."}
+          </p>
+        ) : (
+          <>
+            <ArticleHeader article={currArticle} />
+            <ArticleBody body={currArticle.body} />
+            <VoteButtons articleId={article_id} />
+            <CommentsSection article_id={article_id} />
+          </>
+        )}
       </main>
     </section>
   );
