@@ -3,26 +3,41 @@ import { getArticles } from "../../functions/api";
 import ArticleCard from "./ArticleCard";
 import { Link } from "react-router-dom";
 
-const ArticlesList = () => {
+// <<<<< MAIN COMPONENT >>>>> -----
+const ArticlesList = ({
+  topic = null,
+  sortBy = "created_at",
+  order = "desc",
+}) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsloading] = useState(true);
+  const [isError, setIsError] = useState(null);
 
+  // <<<<< FETCH DATA >>>>> -----
   useEffect(() => {
-    getArticles()
+    setIsloading(true);
+    setIsError(null);
+    getArticles(topic, sortBy, order)
       .then((articlesData) => {
         setArticles(articlesData);
         setIsloading(false);
       })
       .catch((error) => {
         console.error("Error fetching articles:", error);
+        setIsError("Error Fetching Articles, Please try again.");
         setIsloading(false);
       });
-  }, []);
+  }, [topic, sortBy, order]);
 
+  // <<<<< CONDITIONAL RETURNS >>>>> -----
   if (isLoading) {
-    return <p>Loading articles...</p>;
+    return <p className="px-4 flex justify-start mt-10">Loading articles...</p>;
+  }
+  if (isError) {
+    return <p className="px-4 flex justify-start mt-10">{isError}</p>;
   }
 
+  // <<<<< MAIN RETURN >>>>> -----
   return (
     <section>
       <h1 className="text-4xl font-playfair font-bold text-gray-800 gap-4 p-4">
