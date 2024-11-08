@@ -10,6 +10,7 @@ import { UserProvider } from "./context/UserContext";
 import TopicPage from "./components/articles-components/TopicPage";
 import MobileMenu from "./components/MobileMenu";
 import ErrorPage from "./components/ErrorPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Header />
         <MobileMenu />
         <div className="h-2 bg-orange-400 shadow-lg"></div>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/articles" element={<Articles />} />
