@@ -24,6 +24,7 @@ const ArticlesList = ({
         setArticles(articlesData);
         setIsloading(false);
       })
+      // <<<<< ERROR ROUTE HANDLING >>>>> ------
       .catch((error) => {
         console.error("Error fetching articles:", error);
         if (error.response && error.response.status === 404) {

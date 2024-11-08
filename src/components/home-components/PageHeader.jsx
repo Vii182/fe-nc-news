@@ -1,3 +1,4 @@
+// <<<<< PAGE HEADER COMPONENT (HOMEPAGE) >>>>> ------
 const PageHeader = () => {
   return (
     <div className="bg-[url('https://images.pexels.com/photos/3970330/pexels-photo-3970330.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')] bg-cover bg-center bg-w- text-center py-6 px-4 border-b-8">

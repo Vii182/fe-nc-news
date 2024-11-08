@@ -1,6 +1,8 @@
 import NavBar from "./NavBar";
 
+// <<<<< HEADER COMPONENT >>>>> ------
 const Header = () => {
+  // <<<<< MAIN RETURN >>>>> ------
   return (
     <header className="flex flex-col sm:flex-row items-center justify-between h-24 bg-gray-900 px-5 shadow-lg">
       <div className="flex items-center mt-5 sm:mt-0 lg:mt-0 sm:mb-0  sm:mb-4 lg:mb-4 px-4 sm:py-2 lg:py-2 rounded-md">

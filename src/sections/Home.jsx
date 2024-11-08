@@ -5,11 +5,15 @@ import PageHeader from "../components/home-components/PageHeader";
 import TopicsElement from "../components/home-components/TopicsElement";
 import FeaturedArticle from "../components/home-components/FeaturedArticle";
 
-
+// <<<<< HOME PAGE COMPONENT >>>>> ------
 const Home = () => {
+
+  // <<<<< LATEST ARTICLE COMPONENT USESTATES >>>>> ------
   const [latestArticles, setLatestArticles] = useState([]);
+  // <<<<< FEATURED ARTICLE COMPONENT USESTATES >>>>> ------
   const [featuredArticle, setFeaturedArticle] = useState(null);
 
+  // <<<<< FETCH REQUIRED ARTICLES >>>>> ------
   useEffect(() => {
     getLatestArticles().then((articles) => {
       // <<<<< AUTO SHOWS 3 LATEST ARTICLES -----
@@ -19,6 +23,7 @@ const Home = () => {
   }).catch((error) => console.error("Error Displaying Latest Articles:", error));
   }, []);
 
+  // <<<<< MAIN RETURN >>>>> ------
   return (
     <div>
       <PageHeader />

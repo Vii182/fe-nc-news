@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 
+// <<<<< SIDEBAR COMPONENT >>>>> ------
 const SideBar = () => {
+  // <<<<< TOPICS ARRAY >>>>> ------
   const topics = ["coding", "football", "cooking"];
 
+  // <<<<< MAIN RETURN >>>>> ------
   return (
     <aside className="mt-2 fixed left-0 w-24 sm:w-32 lg:w-40 bg-gray-800 text-white h-fit p-2 space-y-4">
       <h2 className="text-orange-500 text-m sm:text-lg lg:text-xl font-bold mb-4">Topics</h2>

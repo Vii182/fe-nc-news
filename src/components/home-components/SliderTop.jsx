@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import LatestSlide from "./LatestSlide";
 import { Link } from "react-router-dom";
 
+// <<<<< IMAGE SLIDER COMPONENT (HOMEPAGE) >>>>> ------
 const SliderTop = ({ articles }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // <<<<< CHANGE TO NEXT SLIDE INTERVAL >>>>> ------
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % articles.length);
@@ -12,16 +14,19 @@ const SliderTop = ({ articles }) => {
     return () => clearInterval(interval);
   }, [articles]);
 
+  // <<<<< NEXT SLIDE BUTTON HANDLING >>>>> ------
   const handleNextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % articles.length);
   };
 
+  // <<<<< PREV SLIDE BUTTON HANDLING >>>>> ------
   const handlePrevSlide = () => {
     setCurrentSlide(
       (prevSlide) => (prevSlide - 1 + articles.length) % articles.length
     );
   };
 
+  // <<<<< MAIN RETURN >>>>> ------
   return (
     <div className="relative w-full h-96 overflow-hidden">
       {articles.map((article, index) => (

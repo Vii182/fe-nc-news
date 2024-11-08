@@ -2,11 +2,13 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { getUserByUsername } from "../../functions/api";
 
+// <<<<< LOGIN COMPONENT, USERNAME ONLY >>>>> ------
 const LoginForm = () => {
   const { user, login, logout } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [isError, setIsError] = useState(null);
 
+  // <<<<< CHECK IF VALID USER AND AWAIT RESPONSE, LOGIN WITH VALID USER >>>>> ------
   const handleLogin = async () => {
     try {
       const validUser = await getUserByUsername(username);
@@ -15,11 +17,13 @@ const LoginForm = () => {
         setUsername("");
         setIsError(null);
       }
+      // <<<<< IS USER NOT FOUND RETURN ERROR >>>>> ------
     } catch {
       setIsError("User not found");
     }
   };
 
+  // <<<<< MAIN RETURN >>>>> ------
   return (
     <div className="login-component">
       {user ? (

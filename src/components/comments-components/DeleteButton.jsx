@@ -2,10 +2,12 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { deleteComment } from "../../functions/api";
 
+// <<<<< DELETE COMMENT COMPONENT >>>>> ------
 const DeleteButton = ({ comment_id, onDelete }) => {
     const { user } = useContext(UserContext);
     const [ error, setError ] = useState(null);
 
+    // <<<<< HANDLE THE DELETION COMPONENT >>>>> ------
     const handleDelete = async () => {
         try {
             await deleteComment(comment_id);
@@ -15,8 +17,10 @@ const DeleteButton = ({ comment_id, onDelete }) => {
         }
     };
 
+    // <<<<< CONDITIONAL RETURN >>>>> ------
     if (error) return <p>{error}</p>;
 
+    // <<<<< MAIN RETURN >>>>> ------
     return (
         user && (
             <button
