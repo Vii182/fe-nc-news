@@ -1,3 +1,4 @@
+// <<<<< ARTICLE CARD COMPONENT (ARTICLELIST/TOPICSPAGE) >>>>> ------
 const ArticleCard = ({ article }) => {
   return (
     <div className="min-h-[420px] max-w-lg mx-auto bg-gray-50 rounded-lg shadow-md overflow-hidden mb-4">

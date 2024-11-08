@@ -2,15 +2,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
+// <<<<< NAVBAR COMPONENT (HEADER) >>>>> ------
 const NavBar = () => {
   const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
 
+  // <<<<< QUICKLOGOUT (NAVIGATES TO HOME) >>>>> ------
   const handleQuickLogout = () => {
     logout();
     navigate("/");
   };
 
+  // <<<<< MAIN RETURN >>>>> ------
   return (
     <nav className="text-white flex items-center space-x-4">
       <Link

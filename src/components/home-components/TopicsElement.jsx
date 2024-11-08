@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
+// <<<<< TOPICS COMPONENT (HOMEPAGE) >>>>> ------
 const TopicsElement = () => {
+  // <<<<< MAIN RETURN >>>>> ------
   return (
     <section className="bg-gray-900 text-white py-8 px-6 md:px-12 text-center">
       <h2 className="text-3xl font-semibold font-playfair mb-6">

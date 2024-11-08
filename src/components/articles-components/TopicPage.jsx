@@ -35,6 +35,7 @@ const TopicPage = () => {
         setArticles(fetchedArticles);
         setIsLoading(false);
       })
+      // <<<<< ERROR ROUTE HANDLING >>>>> ------
       .catch((error) => {
         console.error("Error fetching topic Articles", error);
         if (error.response && error.response.status === 404) {
@@ -44,6 +45,8 @@ const TopicPage = () => {
         } else setErrorCode(500);
       });
   }, [topicName, sortBy, order]);
+
+  // <<<<< CONDITIONAL RETURN >>>>> ------
 
   if (errorCode) {
     return <ErrorPage errorCode={errorCode} />;

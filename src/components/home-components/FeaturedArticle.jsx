@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
+// <<<<< FEATURED ARTICLE COMPONENT >>>>> ------
 const FeaturedArticle = ({ article }) => {
+  
+  // <<<<< MAIN RETURN >>>>> ------
   return (
     <div className="bg-gray-800 text-white py-10">
       <div className="max-w-7xl mx-auto text-center px-4">

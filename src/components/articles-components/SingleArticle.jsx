@@ -24,6 +24,7 @@ const SingleArticle = () => {
         setCurrArticle(fetchedArticle);
         setIsLoading(false);
       })
+      // <<<<< ERROR ROUTE HANDLING >>>>> ------
       .catch((error) => {
         console.error("Error fetching article:", error);
         if (error.response && error.response.status === 404) {

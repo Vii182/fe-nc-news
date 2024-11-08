@@ -2,10 +2,12 @@ import { useContext } from "react";
 import DeleteButton from "./DeleteButton";
 import { UserContext } from "../../context/UserContext";
 
+// <<<<< COMMENT CARD COMPONENT >>>>> ------
 const CommentCard = ({ comment, onDelete }) => {
 
   const { user } = useContext(UserContext);
 
+  // <<<<< MAIN RETURN >>>>> ------
   return (
     <div className="p-4 bg-orange-100 border-l-4 border-orange-400 rounded shadow-sm relative">
       <p className="font-semibold text-gray-800">{comment.author}</p>

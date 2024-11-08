@@ -1,6 +1,8 @@
 import LoginForm from "../components/users-components/Login";
 
+// <<<<< LOGIN PAGE COMPONENT >>>>> ------
 const LoginPage = () => {
+  // <<<<< MAIN RETURN >>>>> ------
   return (
     <section className="flex items-center justify-center h-screen bg-gray-100 px-4">
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">

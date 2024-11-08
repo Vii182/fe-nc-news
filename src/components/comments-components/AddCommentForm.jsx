@@ -2,13 +2,18 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { postComment } from "../../functions/api";
 
+// <<<<< COMMENT FORM COMPONENT >>>>> ------
+
 const AddCommentForm = ({ article_id, onCommentAdd }) => {
   const { user } = useContext(UserContext);
   const [comment, setComment] = useState("");
   const [error, setError] = useState(null);
 
+  // <<<<< AWAIT RESPONSE AND POST COMMENT >>>>> ------
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // <<<<< CHECK IF LOGGED IN, IF NOT POST ERROR >>>>> ------
     if (!user) {
       setError("Please log in to post a comment!");
       return;
@@ -26,6 +31,7 @@ const AddCommentForm = ({ article_id, onCommentAdd }) => {
     }
   };
 
+  // <<<<< MAIN RETURN >>>>> ------
   return (
     <form onSubmit={handleSubmit}>
       <textarea

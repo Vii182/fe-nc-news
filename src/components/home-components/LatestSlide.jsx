@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+// <<<<< IMAGE SLIDE COMPONENT(INDIVIDUAL SLIDE) (HOMEPAGE) >>>>> ------
 const LatestSlide = ({ article }) => {
   return (
     <div
